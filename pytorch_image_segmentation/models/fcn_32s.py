@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 
-class Fcn32s(nn.Module):
+class FCN32s(nn.Module):
     
     
     def __init__(self,num_classes = 1000):
-        super(Fcn32s,self).__init__()
+        super(FCN32s,self).__init__()
         
         self.model = models.vgg16(pretrained=True)
         
