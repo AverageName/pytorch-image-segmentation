@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
-#kek
+
 class FCN32s(nn.Module):
     
     
@@ -10,10 +10,14 @@ class FCN32s(nn.Module):
         
         self.model = models.vgg16(pretrained=True)
         
+        self.model.features[30] = nn.Sequential()
+        
+        self.model.features[23] = nn.Sequential()
+        
         self.num_classes = num_classes
         
         self.classifier = nn.Sequential(
-                nn.Conv2d(512,4096,7,padding = 3),
+                nn.Conv2d(512,4096,7,padding = 12, dilation=4),
                 nn.ReLU(),
                 nn.Dropout(),
                 nn.Conv2d(4096,4096,1,padding = 0),
